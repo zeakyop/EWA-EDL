@@ -1,0 +1,28 @@
+# -*- encoding: utf-8 -*-
+import numpy as np
+
+# f = "../one-hot_tec_label_distribution.txt"
+f = "../LLE_distribution.txt"
+file = "../CBET_train.txt"
+# file2 = "../New_TEC_Max.txt"
+file3 = open("train.txt", "w", encoding='utf-8')
+# file4 = open("TEC-label.txt", "w", encoding='utf-8')
+file5 = open("label_distribution.txt", "w", encoding='utf-8')
+data_size = 51240
+shuffled_index = np.random.permutation(data_size)
+
+all_3 = np.genfromtxt(f, dtype=str)
+all_1 = []
+with open(file, encoding='utf-8') as f:
+    lines = f.readlines()
+    for line in lines:
+        all_1.append(line)
+
+
+
+for i in range(data_size):
+    file3.write(all_1[shuffled_index[i]])
+    file5.write(' '.join(all_3[shuffled_index[i]]) + '\n')
+
+file3.close()
+file5.close()
